@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>Node Chat</title>
+</head>
+
+<body>
+    <div class="typewriter">
+        <h1>Node.js Chat Rooms</h1>
+    </div>
+    <form id="form">
+        <div class="title">Welcome you!</div>
+        <div class="subtitle">Let's chat!</div>
+        <div class="input-container ic1">
+            <input id="name" class="input" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="name" class="placeholder">Name</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="email" class="input" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="email" class="placeholder">Email</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="roomId" class="input" type="text" placeholder=" " />
+            <div class="cut"></div>
+            <label for="roomId" class="placeholder">Room ID</>
+        </div>
+        <div id="buttons-div">
+            <!-- <button type="submit" class="submit">New Room</button> -->
+            <!-- <button type="submit" class="submit" value="enterRoom">Enter Room</button> -->
+            <input id="newRoom" type="button" class="submit" value="New Room" />
+            <input id="enterRoom" type="button" class="submit" value="Enter Room" />
+        </div>
+    </form>
+
+    <script type="text/javascript" src="./js/login.js"></script>
+</body>
+
+</html>

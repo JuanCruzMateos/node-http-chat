@@ -1,0 +1,188 @@
+body {
+    align-items: center;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(../img/pawel-czerwinski-oDNRhpaeVAI-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /* background-position: center; */
+}
+
+#form {
+  background-color: #15172b;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 500px;
+  padding: 20px;
+  width: 320px;
+}
+
+.title {
+  color: #eee;
+  font-family: sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+.subtitle {
+  color: #eee;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.input-container {
+  height: 50px;
+  position: relative;
+  width: 100%;
+}
+
+.ic1 {
+  margin-top: 40px;
+}
+
+.ic2 {
+  margin-top: 30px;
+}
+
+.input {
+  background-color: #303245;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+}
+  
+.cut {
+  background-color: #15172b;
+  border-radius: 10px;
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: -20px;
+  transform: translateY(0);
+  transition: transform 200ms;
+  width: 76px;
+}
+
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+  transform: translateY(8px);
+}
+
+.placeholder {
+  color: #65657b;
+  font-family: sans-serif;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+  color: #808097;
+}
+
+.input:focus ~ .placeholder {
+  color: #bd52bd
+}
+
+#buttons-div {
+    text-align: center;
+    margin-right: -20px;
+    margin-left: -20px;
+}
+
+.submit {
+    display: inline-block;
+    border: 0px;
+    color: antiquewhite;
+    background-color: #bd52bd;
+    margin: 10px auto;
+    border-radius: 7px;
+    font-size: 18px;
+    padding: 5px 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-top: 38px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+.submit:hover {
+    transform: scale(1.05) perspective(1px)
+}
+
+/* button {
+    display: inline-block;
+    border: 0px;
+    color: antiquewhite;
+    background-color: #bd52bd;
+    margin: 10px auto;
+    border-radius: 7px;
+    font-size: 18px;
+    padding: 5px 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-top: 38px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 10px;
+}
+
+button:hover {
+    transform: scale(1.05) perspective(1px)
+} */
+
+
+h1 {
+    margin-top: 50px;
+    max-width: fit-content;
+}
+
+.typewriter h1 {
+    font-size: 50px;
+    text-align: center;
+    color: #db86db;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid white; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 30px 70px; /* Gives that scrolling effect as the typing happens */
+    /* letter-spacing: .15em; Adjust as needed */
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    display: flex
+
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    25% { border-color: #bd52bd; }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "web-chat",
+  "version": "1.0.0",
+  "description": "chat web app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "dev": "nodemon ./src/server.js",
+    "test": "echo 'aca van los test'"
+  },
+  "author": "Juan Cruz Mateos",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

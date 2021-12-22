@@ -1,0 +1,43 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    background-image: url(../img/pawel-czerwinski-oDNRhpaeVAI-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1 {
+    color: #bd52bd;
+    display: block;
+    text-shadow: 2px;
+    text-align: center;
+}
+
+img {
+    width: 20%;
+    height: 20%;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block
+}
+
+button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    display: block;
+    border: 0px;
+    color: antiquewhite;
+    background-color: #bd52bd;
+    border-radius: 7px;
+    font-size: 18px;
+    padding: 10px 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+button:hover {
+    transform: scale(1.05) perspective(1px)
+}

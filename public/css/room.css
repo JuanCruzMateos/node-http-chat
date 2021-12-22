@@ -1,0 +1,189 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(../img/pawel-czerwinski-W10XfpqLu4Y-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 500px;
+    padding: 20px;
+    width: 700px;
+    position: relative;
+}
+
+
+#chat-area {
+    height: 300px;
+    overflow: auto;
+}
+
+
+#chat-area::-webkit-scrollbar {
+    width: 7px;
+}
+
+
+#chat-area::-webkit-scrollbar-thumb {
+    background-color: pink;
+}
+
+.title {
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 15px;
+    flex: 8;
+}
+  
+.subtitle {
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+  
+.msg-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+  
+.msg-div {
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+}
+  
+.cut-other {
+    background-color: #15172b;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 100px;
+    transform: translateY(8px);
+}
+
+.header-other {
+    color: pink;
+    font-family: sans-serif;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+} 
+
+.cut-user {
+    background-color: #15172b;
+    border-radius: 10px;
+    height: 20px;
+    right: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 100px;
+    transform: translateY(8px);
+}
+  
+.header-user {
+    color: lightblue;
+    font-family: sans-serif;
+    right: 40px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+} 
+
+.msg-other {
+    text-align: left;
+}
+
+.msg-user {
+    text-align: right;
+}
+  
+.send-area {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#text-area {
+    border-bottom-left-radius: 20px;
+    height: 50px;
+    flex:8;
+    overflow: auto;
+}
+
+.submit {
+    background-color: #bd52bd;
+    border-bottom-right-radius: 20px;
+    border: 0;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    flex:1;
+}
+
+.submit:hover {
+    font-size: 20px;
+}
+
+#header {
+    display: flex;
+    /* background-color: red; */
+}
+
+#btn-leave-room {
+    border-radius: 25px;
+    background-color: #bd52bd;
+    border: 0;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    /* padding: 10px; */
+}
+
+#btn-leave-room:hover {
+    font-size: 19px;
+}
