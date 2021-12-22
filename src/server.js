@@ -14,7 +14,7 @@ const BASEURL = "http://localhost:8080";
  * @param {http.ServerResponse} response 
  */
 function handleRequest(request, response) {
-    response.setHeader("Access-Control-Allow-Origin", BASEURL);
+    response.setHeader("Access-Control-Allow-Origin", '*');
 
     let body = "";
 
