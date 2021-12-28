@@ -1,3 +1,3 @@
 function goToLogIn() {
-    window.location.href = "http://localhost:8080";
+    window.location.href = `http://localhost:8080`;
 }

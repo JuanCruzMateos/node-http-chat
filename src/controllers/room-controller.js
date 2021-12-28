@@ -5,45 +5,40 @@ const LongPolling = require('./long-polling');
  * @method "POST"
  * @path = "/api/room"
  */
-const newRoom = (name, email, response) => {
-    let newIds = RoomService.newChatRoom(name, email);
+const newRoom = async (name, email, response) => {
 
-    newIds
-        .then(ids => {
-            response.writeHead(200, { "Content-Type": "text/plain" });
-            response.write(JSON.stringify(ids));
-        })
-        .catch(error => {
-            console.log(error);
-            response.writeHead(500, { "Content-Type": "text/plain" });
-            response.write(JSON.stringify({}));
-        })
-        .finally(() => response.end());
+    try {
+        let ids = await RoomService.newChatRoom(name, email);
+        response.writeHead(200, { "Content-Type": "text/plain" });
+        response.write(JSON.stringify(ids));
+    } catch (error) {
+        console.log(error);
+        response.writeHead(500, { "Content-Type": "text/plain" });
+        response.write("");
+    } finally {
+        response.end();
+    }
 }
 
 /**
  * @method "PUT"
  * @path = "/api/room/:roomId"
  */
-const enterRoom = (name, email, roomId, response) => {
-    let newUserId = RoomService.enterChatRoom(name, email, roomId);
+const enterRoom = async (name, email, roomId, response) => {
 
-    newUserId
-        .then(userId => {
-            // console.log(userId);
-            response.writeHead(200, { "Content-Type": "text/plain" });
-            response.write(userId);
-            RoomService.newNotification(userId, roomId, new Date().toLocaleTimeString().substring(0, 5), `${name} has entered the room`);
-        })
-        .catch(error => {
-            console.log(error);
-            response.writeHead(404, { "Content-Type": "text/plain" });
-            response.write('');
-        })
-        .finally(() => {
-            response.end();
-            LongPolling.checkPendingResponses(RoomService.getMessage); // mensaje de nuevo usuario
-        });
+    try {
+        let newUserId = await RoomService.enterChatRoom(name, email, roomId);
+        response.writeHead(200, { "Content-Type": "text/plain" });
+        response.write(newUserId);
+        RoomService.newNotification(newUserId, roomId, new Date().toLocaleTimeString().substring(0, 5), `${name} has entered the room`);
+        LongPolling.checkPendingResponses(RoomService.getMessage); // mensaje de nuevo usuario
+    } catch (error) {
+        console.log(error);
+        response.writeHead(404, { "Content-Type": "text/plain" });
+        response.write('');
+    } finally {
+        response.end();
+    }
 }
 
 
@@ -51,22 +46,20 @@ const enterRoom = (name, email, roomId, response) => {
  * @method "PUT"
  * @path = "/api/message/:roomId/:userId"
  */
-const newMessage = (userId, msg, time, roomId, response) => {
+const newMessage = async (userId, msg, time, roomId, response) => {
     // Guardo el mensaje y respondo ok
-    let msgPromise = RoomService.newMessage(userId, msg, time, roomId);
-
-    msgPromise
-        .then(res => {
-            response.writeHead(200, { "Content-Type": "text/plain" });
-            response.write(res);
-            // Recorro las responses a la espera de un mensaje
-            LongPolling.checkPendingResponses(RoomService.getMessage);
-        })
-        .catch(error => {
-            response.writeHead(500, { "Content-Type": "text/plain" });
-            response.write(error);
-        })
-        .finally(() => response.end());
+    try {
+        let res = await RoomService.newMessage(userId, msg, time, roomId);
+        response.writeHead(200, { "Content-Type": "text/plain" });
+        response.write(res);
+        // Recorro las responses a la espera de un mensaje
+        LongPolling.checkPendingResponses(RoomService.getMessage);
+    } catch (error) {
+        response.writeHead(500, { "Content-Type": "text/plain" });
+        response.write(error);
+    } finally {
+        response.end();
+    }
 }
 
 
@@ -84,23 +77,21 @@ const getMessage = (userId, roomId, response) => {
  * @method "DELETE"
  * @path = /api/room/:roomId/:userId"
  */
-const leaveRoom = (userId, roomId, response) => {
-    let prom = RoomService.leaveRoom(userId, roomId);
+const leaveRoom = async (userId, roomId, response) => {
 
-    prom.
-        then(name => {
-            response.writeHead(200, { "Content-Type": "text/plain" });
-            response.write(name);
-            RoomService.newNotification(userId, roomId, new Date().toLocaleDateString().substring(0, 5), `${name} has left the room`)
-        }).catch((err) => {
-            console.log(err);
-            response.writeHead(500, { "Content-Type": "text/plain" });
-            response.write('');
-        })
-        .finally(() => {
-            response.end();
-            LongPolling.checkPendingResponses(RoomService.getMessage);
-        });
+    try {
+        let name = await RoomService.leaveRoom(userId, roomId);
+        response.writeHead(200, { "Content-Type": "text/plain" });
+        response.write(name);
+        RoomService.newNotification(userId, roomId, new Date().toLocaleTimeString().substring(0, 5), `${name} has left the room`)
+        LongPolling.checkPendingResponses(RoomService.getMessage);
+    } catch (error) {
+        console.log(error);
+        response.writeHead(500, { "Content-Type": "text/plain" });
+        response.write('');
+    } finally {
+        response.end();
+    }
 }
 
 

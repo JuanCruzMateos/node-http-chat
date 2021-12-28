@@ -31,24 +31,30 @@ function handleRequest(request, response) {
         else if (url.pathname === "/room")
             files.renderEJS("./templates/chatroom.ejs", { id: url.searchParams.get("roomId") }, response);
         else {
-            let [_, type, resource] = url.pathname.split('/');
+            const [_, type, ...resource] = url.pathname.split('/');
+            console.log(_, type, resource);
             if (type !== "api") {
-                files.sendStatic(type, resource, response);
+                files.sendStatic(type, resource[0], response);
             } else {
-                if (request.method === "GET")
-                    RoomContoller.getMessage(url.searchParams.get("userId"), url.searchParams.get("roomId"), response);
-                else if (request.method === "DELETE") {
-                    RoomContoller.leaveRoom(url.searchParams.get("userId"), url.searchParams.get("roomId"), response);
+                if (request.method === "GET") {
+                    const [_, roomId, userId] = resource;
+                    RoomContoller.getMessage(userId, roomId, response);
+                } else if (request.method === "DELETE") {
+                    const [_, roomId, userId] = resource;
+                    RoomContoller.leaveRoom(userId, roomId, response);
                 } else {
                     const userData = JSON.parse(body);
                     if (request.method === "POST") {
-                        if (resource === "room") {
+                        if (resource[0] === "room") {
                             RoomContoller.newRoom(userData.name, userData.email, response);
                         } else {
-                            RoomContoller.newMessage(url.searchParams.get("userId"), userData.msg, userData.time, url.searchParams.get("roomId"), response);
+                            const [_, roomId, userId] = resource;
+                            RoomContoller.newMessage(userId, userData.msg, userData.time, roomId, response);
                         }
                     } else {  // PUT
-                        RoomContoller.enterRoom(userData.name, userData.email, url.searchParams.get("roomId"), response);
+                        const [_, roomId] = resource;
+                        console.log(roomId);
+                        RoomContoller.enterRoom(userData.name, userData.email, roomId, response);
                     }
                 }
             }

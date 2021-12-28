@@ -1,7 +1,5 @@
 "use strict";
 
-const { getMessage } = require("../services/room-service");
-
 
 let pendingResponses = [];
 

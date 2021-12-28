@@ -68,15 +68,15 @@ const newMessage = (userId, msg, time, roomId) => {
 
     if (activeRooms.has(roomId)) {
         let room = activeRooms.get(roomId);
-        if (room.users.size > 1) {
-            let message = new Message(room.getUser(userId), msg, time);
-            for (let [id, _] of room.users.entries()) {
-                if (id !== userId)
-                    message.to(id);
-            }
-            room.addMessage(message);
-            response = true;
+        // if (room.users.size > 1) {
+        let message = new Message(room.getUser(userId), msg, time);
+        for (let [id, _] of room.users.entries()) {
+            if (id !== userId)
+                message.to(id);
         }
+        room.addMessage(message);
+        response = true;
+        // }
     }
     return response;
 }
@@ -115,16 +115,16 @@ const notification = (userId, roomId, time, message) => {
 
     if (activeRooms.has(roomId)) {
         let room = activeRooms.get(roomId);
-        if (room.users.size > 1) {
-            let msg = new Message(room.bot, message, time);
-            for (const [id, _] of room.users.entries()) {
-                if (id !== userId) {
-                    msg.to(id);
-                }
+        // if (room.users.size > 1) {
+        let msg = new Message(room.bot, message, time);
+        for (const [id, _] of room.users.entries()) {
+            if (id !== userId) {
+                msg.to(id);
             }
-            room.addMessage(msg);
-            response = true;
         }
+        room.addMessage(msg);
+        response = true;
+        // }
     }
     return response;
 }

@@ -43,7 +43,7 @@ function appendToChatArea(msg, user = "this") {
 (async function askForMessages() {
     const { roomId, userId } = getIds();
 
-    await fetch(`http://localhost:8080/api/message?roomId=${roomId}&userId=${userId}`, {
+    await fetch(`http://localhost:8080/api/message/${roomId}/${userId}`, {
         method: "GET",
         mode: "cors",
     })
@@ -64,7 +64,7 @@ function sendMessage() {
     // @ts-ignore
     document.getElementById("text-area").value = "";
     document.getElementById("text-area").focus();
-    fetch(`http://localhost:8080/api/message?roomId=${roomId}&userId=${userId}`, {
+    fetch(`http://localhost:8080/api/message/${roomId}/${userId}`, {
         method: "POST",
         mode: "cors",
         body: JSON.stringify(msg)
@@ -78,7 +78,7 @@ function sendMessage() {
 function leaveRoom() {
     const { roomId, userId } = getIds();
 
-    fetch(`http://localhost:8080/api/room?roomId=${roomId}&userId=${userId}`, {
+    fetch(`http://localhost:8080/api/room/${roomId}/${userId}`, {
         method: "DELETE",
         mode: "cors",
     })
@@ -86,7 +86,7 @@ function leaveRoom() {
         .then(data => {
             console.log(data)
             if (data) {
-                window.location.href = "http://localhost:8080";
+                window.location.href = `http://localhost:8080`;
             }
         })
         .catch(err => console.log("2", err));
